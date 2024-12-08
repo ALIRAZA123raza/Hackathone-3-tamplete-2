@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useState } from 'react'
-import { Truck, Medal, CreditCard, Recycle } from 'lucide-react'
+
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 
