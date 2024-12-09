@@ -12,7 +12,7 @@ export default function NewsSection() {
           backgroundPosition: "center",
         }}
       ></div>
-      {/* Reduced the opacity for more visibility */}
+  
       <div className="absolute inset-0 bg-white opacity-50 z-10"></div>
       <div className="max-w-4xl mx-auto text-center relative z-20">
         <h2 className="font-clash text-3xl md:text-4xl font-medium mb-4 text-black">

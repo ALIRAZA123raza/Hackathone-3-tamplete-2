@@ -5,7 +5,7 @@ import { Truck, Medal, CreditCard, Recycle } from 'lucide-react'
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 
-export default function Feutures() {
+export default function Product() {
   const [isVisible, setIsVisible] = useState(false)
 
   useEffect(() => {

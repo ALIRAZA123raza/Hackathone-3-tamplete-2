@@ -7,7 +7,7 @@ export default function Footer() {
     <footer className="bg-[#2A254B] text-white px-6 py-16 md:px-12">
       <div className="max-w-[1440px] mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12">
-          {/* Menu Column */}
+          
           <div className="space-y-6">
             <h3 className="text-base font-normal">Menu</h3>
             <nav className="flex flex-col space-y-4">
@@ -19,7 +19,7 @@ export default function Footer() {
             </nav>
           </div>
 
-          {/* Categories Column */}
+          
           <div className="space-y-6">
             <h3 className="text-base font-normal">Categories</h3>
             <nav className="flex flex-col space-y-4">
@@ -32,7 +32,7 @@ export default function Footer() {
             </nav>
           </div>
 
-          {/* Our Company Column */}
+        
           <div className="space-y-6">
             <h3 className="text-base font-normal">Our company</h3>
             <nav className="flex flex-col space-y-4">
@@ -44,7 +44,7 @@ export default function Footer() {
             </nav>
           </div>
 
-          {/* Join Mailing List */}
+          
           <div className="space-y-6">
             <h3 className="text-base font-normal">Join our mailing list</h3>
             <div className="flex gap-2 w-full">
@@ -62,7 +62,7 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Footer Bottom */}
+      
         <div className="flex flex-col md:flex-row justify-between items-center mt-16 pt-8 border-t border-[#4E4D93]">
           <p className="text-sm mb-6 md:mb-0">Copyright 2022 Avion LTD</p>
           <div className="flex items-center space-x-6">

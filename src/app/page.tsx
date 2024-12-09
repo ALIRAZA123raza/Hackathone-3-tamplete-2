@@ -2,7 +2,7 @@
 import Footer from "@/components/Footer";
 import Hero from "@/components/Hero";
 import TopHeader from "@/components/TopHeader";
-import Feutures from "@/components/Feutures";
+import Product from "@/components/Product";
 import HeroSection from "@/components/HeroSection";
 import NewsSection from "@/components/newsSection";
 import HeroBanner from "@/components/HeroBanner";
@@ -12,7 +12,7 @@ export default function Home() {
    <div>
     <TopHeader/>
     <Hero/>
-    <Feutures/>
+    <Product/>
     <HeroBanner/>
     <NewsSection/>
     <HeroSection/>

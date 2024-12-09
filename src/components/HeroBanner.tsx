@@ -31,14 +31,14 @@ export default function Feutures() {
   <div
     className={`aspect-square relative overflow-hidden mb-3 ${
       product.id === 1 ? 'scale-110' : ''
-    }`} // Scale slightly larger for id 1
+    }`} 
   >
     <img
       src={product.image}
       alt={product.name}
       className={`object-cover w-full h-full transition-transform duration-300 group-hover:scale-105 ${
         product.id === 1 ? 'h-[100%] w-[160%]' : ''
-      }`} // Bigger dimensions for id 1
+      }`} 
     />
   </div>
   <h3 className="font-clash font-medium text-lg">{product.name}</h3>
