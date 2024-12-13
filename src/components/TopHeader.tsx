@@ -6,7 +6,7 @@ const TopHeader = () => {
   return (
     <div>
       
-      <div className='w-full border-b-2 border-gray-300 p-4 flex items-center justify-between'>
+      <div className='w-full border-b-2 border-gray-300  p-4 flex items-center justify-between'>
       
         <div className='flex items-center'>
           <Search className='hidden sm:block text-gray-600' />
