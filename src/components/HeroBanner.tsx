@@ -71,7 +71,7 @@ const products = [
         id: 1,
         name: "The poplar suecle sofa",
         price: "980",
-        image: "/popler sofa.png"
+        image: "/popler sofa.png",
       },
   {
     id: 2,
