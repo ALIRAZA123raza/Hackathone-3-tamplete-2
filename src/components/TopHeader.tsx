@@ -23,24 +23,24 @@ const TopHeader = () => {
       
       <div className='max-w-7xl mx-auto px-4'>
         <div className='flex flex-wrap justify-center gap-6 py-4 text-sm sm:text-base text-[#726E8D]'>
-          <Link href={"#"} className='hover:text-gray-800 transition'>
+          <ul>
             Plants Pots
-          </Link>
-          <Link href={"#"} className='hover:text-gray-800 transition'>
+            </ul>
+           <ul>
             Ceramics
-          </Link>
-          <Link href={"#"} className='hover:text-gray-800 transition'>
+            </ul> 
+           <ul>
             Tables
-          </Link>
-          <Link href={"#"} className='hover:text-gray-800 transition'>
+            </ul>
+          <ul>
             Chairs
-          </Link>
-          <Link href={"#"} className='hover:text-gray-800 transition'>
+            </ul>
+        <ul>
             Crockery
-          </Link>
-          <Link href={"#"} className='hover:text-gray-800 transition'>
+            </ul>
+          <ul>
             Tableware
-          </Link>
+            </ul>
         </div>
       </div>
     </div>

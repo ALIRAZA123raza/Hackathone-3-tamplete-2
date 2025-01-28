@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react'
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 
+
 export default function Feutures() {
   const [isVisible, setIsVisible] = useState(false)
 
@@ -53,13 +54,14 @@ export default function Feutures() {
         className={`text-center mt-12 transition-all duration-700 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
         style={{ transitionDelay: '500ms' }}
       >
-        <Button 
+       <Button 
           variant="outline" 
           size="lg" 
           className="font-clash transition-transform duration-200 hover:scale-105 active:scale-95"
         >
           View collection
         </Button>
+        
       </div>
     </section>
   )
