@@ -6,8 +6,7 @@ import HeroSection from "@/components/HeroSection";
 import NewsSection from "@/components/newsSection";
 import HeroBanner from "@/components/HeroBanner";
 
-import PRODUCT from "@/components/products/page";
-import Categories from "@/components/category/page";
+
 import Product from "@/components/Product";
 
 
