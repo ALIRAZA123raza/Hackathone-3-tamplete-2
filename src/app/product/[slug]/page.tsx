@@ -5,10 +5,11 @@ import { Product } from "../../../../types/product";
 import { groq } from "next-sanity";
 import Image from "next/image";
 import { urlFor } from "@/sanity/lib/image";
-import { addToCart } from "@/app/action/action";
+import { addToCart } from "@/app/action/action"; // Import Add to Cart function
 import Swal from "sweetalert2";
 import { useState, useEffect } from "react";
 
+// Function to get the product from Sanity database
 async function getProduct(slug: string): Promise<Product> {
   return client.fetch(
     groq`*[_type == "product" && slug.current == $slug][0] {
@@ -22,21 +23,17 @@ async function getProduct(slug: string): Promise<Product> {
   );
 }
 
-interface productPageProps {
+interface ProductPageProps {
   params: { slug: string };
 }
 
-export default function ProductPage({ params }: productPageProps) {
+export default function ProductPage({ params }: ProductPageProps) {
   const [product, setProduct] = useState<Product | null>(null);
 
   useEffect(() => {
     const fetchProduct = async () => {
-      try {
-        const fetchedProduct = await getProduct(params.slug);
-        setProduct(fetchedProduct);
-      } catch (error) {
-        console.error("Error fetching product:", error);
-      }
+      const fetchedProduct = await getProduct(params.slug);
+      setProduct(fetchedProduct);
     };
 
     fetchProduct();
@@ -55,6 +52,7 @@ export default function ProductPage({ params }: productPageProps) {
     }
   };
 
+  // Show loading state while fetching data
   if (!product) {
     return <p>Loading...</p>;
   }
@@ -63,7 +61,7 @@ export default function ProductPage({ params }: productPageProps) {
     <div className="max-w-7xl mx-auto px-4">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
         <div className="aspect-square mt-11">
-          {product.image ? (
+          {product.image && (
             <Image
               src={urlFor(product.image).url()}
               alt={product.name}
@@ -71,8 +69,6 @@ export default function ProductPage({ params }: productPageProps) {
               height={500}
               className="rounded-lg shadow-md"
             />
-          ) : (
-            <p>No image available</p>
           )}
         </div>
         <div className="flex flex-col gap-8 mt-12">
