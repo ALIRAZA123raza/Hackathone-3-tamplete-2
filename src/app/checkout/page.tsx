@@ -180,7 +180,7 @@ export default function CheckoutPage() {
             )}
             <div className="text-right pt-4">
               <p className="text-sm">
-                Subtotal: <span className="font-medium">${subtotal}}</span>
+                Subtotal: <span className="font-medium">${subtotal}</span>
               </p>
               <p className="text-sm">
                 Discount: <span className="font-medium">-${discount}</span>

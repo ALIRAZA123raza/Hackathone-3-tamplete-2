@@ -6,11 +6,9 @@ import Image from "next/image";
 import { urlFor } from "@/sanity/lib/image";
 import { addToCart } from "@/app/action/action"; // Import Add to Cart function
 import Swal from "sweetalert2";
+import { useState , useEffect } from "react";
 
-interface productPageProps {
-  params: Promise<{ slug: string }>;
-}
-
+// Function to get the product from Sanity database
 async function getProduct(slug: string): Promise<Product> {
   return client.fetch(
     groq`*[_type == "product" && slug.current == $slug][0] {
@@ -24,20 +22,39 @@ async function getProduct(slug: string): Promise<Product> {
   );
 }
 
-export default async function ProductPage({ params }: productPageProps) {
-  const { slug } = await params;
-  const product = await getProduct(slug);
+interface productPageProps {
+  params: { slug: string };
+}
+
+export default function ProductPage({ params }: productPageProps) {
+  const [product, setProduct] = useState<Product | null>(null);
+
+  useEffect(() => {
+    const fetchProduct = async () => {
+      const fetchedProduct = await getProduct(params.slug);
+      setProduct(fetchedProduct);
+    };
+
+    fetchProduct();
+  }, [params.slug]);
 
   const handleAddToCart = () => {
-    addToCart(product);
-    Swal.fire({
-      position: "top-right",
-      icon: "success",
-      title: `${product.name} added to cart`,
-      showConfirmButton: false,
-      timer: 1500,
-    });
+    if (product) {
+      addToCart(product);
+      Swal.fire({
+        position: "top-right",
+        icon: "success",
+        title: `${product.name} added to cart`,
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    }
   };
+
+  // Show loading state while fetching data
+  if (!product) {
+    return <p>Loading...</p>;
+  }
 
   return (
     <div className="max-w-7xl mx-auto px-4">
