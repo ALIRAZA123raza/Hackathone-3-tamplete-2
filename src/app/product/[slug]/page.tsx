@@ -28,16 +28,19 @@ interface ProductPageProps {
 }
 
 export default function ProductPage({ params }: ProductPageProps) {
+  const { slug } = params; // Explicitly destructure params to get slug
   const [product, setProduct] = useState<Product | null>(null);
 
   useEffect(() => {
     const fetchProduct = async () => {
-      const fetchedProduct = await getProduct(params.slug);
-      setProduct(fetchedProduct);
+      if (slug) {
+        const fetchedProduct = await getProduct(slug);
+        setProduct(fetchedProduct);
+      }
     };
 
     fetchProduct();
-  }, [params.slug]);
+  }, [slug]);
 
   const handleAddToCart = () => {
     if (product) {
