@@ -8,6 +8,7 @@ import HeroBanner from "@/components/HeroBanner";
 
 import PRODUCT from "@/components/products/page";
 import Categories from "@/components/category/page";
+import Product from "@/components/Product";
 
 
 
@@ -16,8 +17,8 @@ export default function Home() {
    <div>
     <TopHeader/>
     <Hero/>
-     <PRODUCT/>
      
+     <Product/>
     <HeroBanner/>
     <NewsSection/>
     <HeroSection/>

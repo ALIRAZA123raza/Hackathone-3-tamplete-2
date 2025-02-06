@@ -1,16 +1,17 @@
+import Link from 'next/link';
 import React from 'react';
 
 const Hero = () => {
   return (
     <div className="w-full h-auto flex flex-col sm:flex-row items-center justify-between px-4 sm:px-8 mt-8 sm:h-screen">
     
-      <div className="bg-[#4E4D93] flex flex-col items-start justify-center w-full sm:w-1/2 px-4 sm:pl-16 text-white rounded-md h-auto sm:h-full">
+      <div className="bg-[#2A254B] flex flex-col items-start justify-center w-full sm:w-1/2 px-4 sm:pl-16 text-white rounded-md h-auto sm:h-full">
         <h1 className="text-4xl sm:text-6xl font-bold mb-4 sm:mb-8 leading-tight">
           The furniture brand for the future, with timeless designs
         </h1>
-        <button  className="bg-white text-[#4E4D93] px-6 sm:px-8 py-2 sm:py-3 rounded mb-4 sm:mb-8">
+        <Link href="/products"><button  className="bg-white text-[#444285] px-6 sm:px-8 py-2 sm:py-3 rounded mb-4 sm:mb-8">
           View Collection
-        </button>
+        </button></Link>
         <p className="mt-4 sm:mt-6 text-gray-300 text-base sm:text-lg">
           A new era in eco-friendly furniture with Avelon, the French luxury
           retail brand with nice fonts, tasteful colors, and a beautiful way to

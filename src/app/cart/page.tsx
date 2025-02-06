@@ -5,12 +5,19 @@ import { getCartItems, removeFromCart, updateCartQuantity } from '@/app/action/a
 import Swal from 'sweetalert2';
 import Image from 'next/image';
 import { urlFor } from '@/sanity/lib/image';
+import TopHeader from '@/components/TopHeader';
+import { useRouter } from 'next/navigation';
 
 const CartPage = () => {
   const [cartItems, setCartItems] = useState<Product[]>([]);
 
   useEffect(() => {
-    setCartItems(getCartItems());
+    // Get cart items and ensure each item has a quantity
+    const items = getCartItems().map(item => ({
+      ...item,
+      quantity: item.quantity || 1  // Set default quantity if undefined
+    }));
+    setCartItems(items);
   }, []);
 
   const handleRemove = (id: string) => {
@@ -41,18 +48,23 @@ const CartPage = () => {
 
   const handleIncrement = (id: string) => {
     const product = cartItems.find((item) => item._id === id);
-    if (product) handleQuantityChange(id, product.quantity + 1);
+    if (product) handleQuantityChange(id, (product.quantity || 1) + 1);
   };
 
   const handleDecrement = (id: string) => {
     const product = cartItems.find((item) => item._id === id);
-    if (product && product.quantity > 1) handleQuantityChange(id, product.quantity - 1);
+    if (product && (product.quantity || 1) > 1) handleQuantityChange(id, (product.quantity || 1) - 1);
   };
 
   const calculatedTotal = () => {
-    return cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
+    return cartItems.reduce((total, item) => {
+      const quantity = item.quantity || 1;
+      const price = item.price || 0;
+      return total + (price * quantity);
+    }, 0);
   };
 
+  const router =useRouter();
   const handleProceed = () => {
     Swal.fire({
       title: 'Proceed to Checkout',
@@ -65,13 +77,23 @@ const CartPage = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         Swal.fire('Success!', 'Your order has been successfully processed.', 'success');
+        router.push("/checkout")
         setCartItems([]);
       }
     });
   };
 
   return (
+    <>
+    
+    <div className="w-full bg-[#1C1A26] text-white py-3 px-4 text-center text-sm">
+        <p className="text-xs md:text-sm">
+          Free delivery on all orders over £50 with code easter checkout
+        </p>
+      </div>
+    <TopHeader/>
     <div className="p-4 max-w-4xl mx-auto">
+      
       <h1 className="text-2xl font-bold mb-4">Your Cart</h1>
 
       {cartItems.length > 0 ? (
@@ -84,25 +106,25 @@ const CartPage = () => {
                 
                 {item.image && (
                   <Image 
-                  src={urlFor(item.image).url()}
-                  className='w-16 h-16 object-cover rounded-lg'
-                  alt="image"
-                  width={500}
-                  height={500}
+                    src={urlFor(item.image).url()}
+                    className='w-16 h-16 object-cover rounded-lg'
+                    alt={item.name || "Product image"}
+                    width={500}
+                    height={500}
                   />
                 )}
             
                 <div>
                   <h2 className="text-lg font-semibold">{item.name}</h2>
-                  <p className="text-gray-600">Price: ${item.price.toFixed(2)}</p>
-                  <p className="text-gray-600">Quantity: {item.quantity}</p>
+                  <p className="text-gray-600">Price: ${(item.price || 0).toFixed(2)}</p>
+                  <p className="text-gray-600">Quantity: {item.quantity || 1}</p>
                   <div className="flex items-center mt-2 gap-2">
                     <button
                       onClick={() => handleDecrement(item._id)}
                       className="px-2 py-1 bg-gray-200 rounded hover:bg-gray-300">
                       -
                     </button>
-                    <span>{item.quantity}</span>
+                    <span>{item.quantity || 1}</span>
                     <button
                       onClick={() => handleIncrement(item._id)}
                       className="px-2 py-1 bg-gray-200 rounded hover:bg-gray-300">
@@ -133,6 +155,7 @@ const CartPage = () => {
         <p className="text-gray-500 text-center">Your cart is empty!</p>
       )}
     </div>
+    </>
   );
 };
 

@@ -42,7 +42,7 @@ export default async function ProductPage({ params }: productPageProps) {
   return (
     <div className="max-w-7xl mx-auto px-4">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-        <div className="aspect-square">
+        <div className="aspect-square mt-11">
           {product.image && (
             <Image
               src={urlFor(product.image).url()}
@@ -53,7 +53,7 @@ export default async function ProductPage({ params }: productPageProps) {
             />
           )}
         </div>
-        <div className="flex flex-col gap-8">
+        <div className="flex flex-col gap-8 mt-12">
           <h1 className="text-4xl font-bold">{product.name}</h1>
           <p className="text-gray-700">{product.description}</p>
           <p className="text-2xl font-sans">Price: ${product.price}</p>

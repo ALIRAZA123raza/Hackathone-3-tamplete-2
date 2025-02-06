@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import { Truck, Medal, CreditCard, Recycle } from 'lucide-react'
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
+import Link from 'next/link'
 
 export default function Product() {
   const [isVisible, setIsVisible] = useState(false)
@@ -66,6 +67,7 @@ export default function Product() {
         className={`text-center mt-12 transition-all duration-700 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
         style={{ transitionDelay: '500ms' }}
       >
+        <Link href="/products" passHref>
         <Button 
           variant="outline" 
           size="lg" 
@@ -73,6 +75,7 @@ export default function Product() {
         >
           View collection
         </Button>
+        </Link>
       </div>
     </section>
   )
