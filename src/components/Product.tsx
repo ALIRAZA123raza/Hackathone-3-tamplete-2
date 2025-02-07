@@ -44,11 +44,13 @@ export default function Product() {
           >
             <Card className="border-0 shadow-none group">
               <div className="aspect-square relative overflow-hidden mb-3">
-                <Image
-                  src={product.image}
-                  alt={product.name}
-                  className="object-cover w-full h-full transition-transform duration-300 group-hover:scale-105"
-                />
+              <Image
+  src="/product-card.png"
+  alt="Product Card"
+  width={500}
+  height={500}
+/>
+
               </div>
               <h3 className="font-clash font-medium text-lg">{product.name}</h3>
               <p className="text-muted-foreground mb-3">£{product.price}</p>

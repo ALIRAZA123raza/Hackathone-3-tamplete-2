@@ -19,6 +19,8 @@ export default function HeroSection() {
         <Image
           src="/Image.png"
           alt="Interior design showcase"
+          width={500}
+          height={500}
           className="w-full h-full object-cover"
         />
       </div>
