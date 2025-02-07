@@ -1,5 +1,7 @@
+// ProductClient.tsx (Client Component)
 "use client";
 
+import { useEffect, useState } from "react";
 import { client } from "@/sanity/lib/client";
 import { Product } from "../../../../types/product";
 import { groq } from "next-sanity";
@@ -7,10 +9,14 @@ import Image from "next/image";
 import { urlFor } from "@/sanity/lib/image";
 import { addToCart } from "@/app/action/action";
 import Swal from "sweetalert2";
-import { useState, useEffect } from "react";
 
-// Function to fetch the product from Sanity database
-async function getProduct(slug: string): Promise<Product | null> {
+interface ProductClientProps {
+  params: {
+    slug: string;
+  };
+}
+
+async function fetchProduct(slug: string): Promise<Product | null> {
   return client.fetch(
     groq`*[_type == "product" && slug.current == $slug][0] {
       _id,
@@ -23,52 +29,45 @@ async function getProduct(slug: string): Promise<Product | null> {
   );
 }
 
-interface ProductPageProps {
-  params: { slug: string }; // Fix the type here
-}
-
-export default function ProductPage({ params }: ProductPageProps) {
-  const { slug } = params; // Use the correct type
+export default function ProductClient({ params }: ProductClientProps) {
+  const { slug } = params;
   const [product, setProduct] = useState<Product | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchProduct = async () => {
-      if (slug) {
-        try {
-          const fetchedProduct = await getProduct(slug);
-          setProduct(fetchedProduct);
-        } catch (error) {
-          console.error("Failed to fetch product:", error);
-        } finally {
-          setIsLoading(false);
-        }
+    async function getProductData() {
+      try {
+        setLoading(true);
+        const fetchedProduct = await fetchProduct(slug);
+        setProduct(fetchedProduct);
+      } catch (error) {
+        console.error("Error fetching product:", error);
+      } finally {
+        setLoading(false);
       }
-    };
-
-    fetchProduct();
+    }
+    
+    getProductData();
   }, [slug]);
 
-  const handleAddToCart = () => {
-    if (product) {
-      addToCart(product);
-      Swal.fire({
-        position: "top-right",
-        icon: "success",
-        title: `${product.name} added to cart`,
-        showConfirmButton: false,
-        timer: 1500,
-      });
-    }
-  };
-
-  if (isLoading) {
+  if (loading) {
     return <p>Loading...</p>;
   }
 
   if (!product) {
     return <p>Product not found!</p>;
   }
+
+  const handleAddToCart = () => {
+    addToCart(product);
+    Swal.fire({
+      position: "top-right",
+      icon: "success",
+      title: `${product.name} added to cart`,
+      showConfirmButton: false,
+      timer: 1500,
+    });
+  };
 
   return (
     <div className="max-w-7xl mx-auto px-4">
