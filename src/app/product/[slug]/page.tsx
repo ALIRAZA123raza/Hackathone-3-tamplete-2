@@ -23,10 +23,6 @@ async function getProduct(slug: string): Promise<Product | null> {
   );
 }
 
-interface ProductPageProps {
-  params: { slug: string };
-}
-
 export default function ProductPage({ params }: { params: { slug: string } }) {
   const { slug } = params;
   const [product, setProduct] = useState<Product | null>(null);
