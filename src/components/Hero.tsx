@@ -5,7 +5,7 @@ const Hero = () => {
   return (
     <div className="w-full h-auto flex flex-col sm:flex-row items-center justify-between px-4 sm:px-8 mt-8 sm:h-screen">
     
-      <div className="bg-[#2A254B] flex flex-col items-start justify-center w-full sm:w-1/2 px-4 sm:pl-16 text-white rounded-md h-auto sm:h-full">
+      <div className="bg-[#2A264B] flex flex-col items-start justify-center w-full sm:w-1/2 px-4 sm:pl-16 text-white rounded-md h-auto sm:h-full">
         <h1 className="text-4xl sm:text-6xl font-bold mb-4 sm:mb-8 leading-tight">
           The furniture brand for the future, with timeless designs
         </h1>
