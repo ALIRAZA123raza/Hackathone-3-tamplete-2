@@ -18,7 +18,7 @@ interface ProductPageProps {
   params: Promise<ProductPageParams>; // Ensure params is a Promise
 }
 
-const ProductPage: React.FC<ProductPageProps> = ({ params }) => {
+const ProductPage: React.FC<ProductPageProps> = () => {
   const [product, setProduct] = useState<Product[]>([]);
 
   useEffect(() => {
