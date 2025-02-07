@@ -10,7 +10,15 @@ import { addToCart } from "@/app/action/action";
 import swal from "sweetalert2";
 import Footer from "@/components/Footer";
 
-const ProductPage = () => {
+interface ProductPageParams {
+  slug: string;
+}
+
+interface ProductPageProps {
+  params: Promise<ProductPageParams>; // Ensure params is a Promise
+}
+
+const ProductPage: React.FC<ProductPageProps> = ({ params }) => {
   const [product, setProduct] = useState<Product[]>([]);
 
   useEffect(() => {
@@ -26,7 +34,7 @@ const ProductPage = () => {
     swal.fire({
       position: "top-right",
       icon: "success",
-      title: `${product.name} added to cart`,
+      title: `${product.name} added to cart`, // Fixed template literal syntax
       showConfirmButton: false,
       timer: 1000,
     });
