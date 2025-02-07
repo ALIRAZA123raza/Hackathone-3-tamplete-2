@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useState } from 'react'
-
+import Image from 'next/image'
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 
@@ -34,7 +34,7 @@ export default function Feutures() {
       product.id === 1 ? 'scale-110' : ''
     }`} 
   >
-    <img
+    <Image
       src={product.image}
       alt={product.name}
       className={`object-cover w-full h-full transition-transform duration-300 group-hover:scale-105 ${

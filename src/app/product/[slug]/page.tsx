@@ -10,7 +10,7 @@ import Swal from "sweetalert2";
 import { useState, useEffect } from "react";
 
 // Function to fetch the product from Sanity database
-async function getProduct(slug: string): Promise<Product> {
+async function getProduct(slug: string): Promise<Product | null> {
   return client.fetch(
     groq`*[_type == "product" && slug.current == $slug][0] {
       _id,
@@ -27,7 +27,7 @@ interface ProductPageProps {
   params: { slug: string };
 }
 
-export default function ProductPage({ params }: ProductPageProps) {
+export default function ProductPage({ params }: { params: { slug: string } }) {
   const { slug } = params;
   const [product, setProduct] = useState<Product | null>(null);
   const [isLoading, setIsLoading] = useState(true); // Add loading state

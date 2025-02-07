@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import React from 'react';
+import Image from 'next/image';
 
 const Hero = () => {
   return (
@@ -21,7 +22,7 @@ const Hero = () => {
 
       
       <div className="w-full sm:w-1/2 h-auto sm:h-full flex items-center justify-center relative mt-4 sm:mt-0">
-        <img
+        <Image
           src="/Product Card.png"
           alt="The Dandy Chair"
           className="w-full  sm:w-auto h-auto sm:h-full object-contain"

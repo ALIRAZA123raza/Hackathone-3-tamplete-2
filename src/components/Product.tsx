@@ -1,5 +1,5 @@
 "use client"
-
+import Image from 'next/image'
 import { useEffect, useState } from 'react'
 import { Truck, Medal, CreditCard, Recycle } from 'lucide-react'
 import { Button } from "@/components/ui/button"
@@ -44,7 +44,7 @@ export default function Product() {
           >
             <Card className="border-0 shadow-none group">
               <div className="aspect-square relative overflow-hidden mb-3">
-                <img
+                <Image
                   src={product.image}
                   alt={product.name}
                   className="object-cover w-full h-full transition-transform duration-300 group-hover:scale-105"
