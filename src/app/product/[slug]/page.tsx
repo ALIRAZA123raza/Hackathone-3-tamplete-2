@@ -9,7 +9,7 @@ import { addToCart } from "@/app/action/action"; // Import Add to Cart function
 import Swal from "sweetalert2";
 import { useState, useEffect } from "react";
 
-// Function to get the product from Sanity database
+// Function to fetch the product from Sanity database
 async function getProduct(slug: string): Promise<Product> {
   return client.fetch(
     groq`*[_type == "product" && slug.current == $slug][0] {
@@ -28,14 +28,21 @@ interface ProductPageProps {
 }
 
 export default function ProductPage({ params }: ProductPageProps) {
-  const { slug } = params; // Explicitly destructure params to get slug
+  const { slug } = params;
   const [product, setProduct] = useState<Product | null>(null);
+  const [isLoading, setIsLoading] = useState(true); // Add loading state
 
   useEffect(() => {
     const fetchProduct = async () => {
       if (slug) {
-        const fetchedProduct = await getProduct(slug);
-        setProduct(fetchedProduct);
+        try {
+          const fetchedProduct = await getProduct(slug);
+          setProduct(fetchedProduct);
+        } catch (error) {
+          console.error("Failed to fetch product:", error);
+        } finally {
+          setIsLoading(false); // Set loading to false after fetch
+        }
       }
     };
 
@@ -55,14 +62,18 @@ export default function ProductPage({ params }: ProductPageProps) {
     }
   };
 
-  // Show loading state while fetching data
+  if (isLoading) {
+    return <p>Loading...</p>; // Show loading state
+  }
+
   if (!product) {
-    return <p>Loading...</p>;
+    return <p>Product not found!</p>; // Handle case where product is not found
   }
 
   return (
     <div className="max-w-7xl mx-auto px-4">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+        {/* Product Image */}
         <div className="aspect-square mt-11">
           {product.image && (
             <Image
@@ -74,6 +85,7 @@ export default function ProductPage({ params }: ProductPageProps) {
             />
           )}
         </div>
+        {/* Product Details */}
         <div className="flex flex-col gap-8 mt-12">
           <h1 className="text-4xl font-bold">{product.name}</h1>
           <p className="text-gray-700">{product.description}</p>
