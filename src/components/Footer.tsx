@@ -1,6 +1,7 @@
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Facebook, Twitter, Instagram, Linkedin, PinIcon as Pinterest, WebcamIcon as Skype } from 'lucide-react'
+import Link from "next/link"
 
 export default function Footer() {
   return (
@@ -53,11 +54,12 @@ export default function Footer() {
                 placeholder="your@email.com" 
                 className="bg-[#393653] border-none text-white placeholder:text-gray-400 h-12 w-full"
               />
-              <Button 
+             <Link href={"/signUp"}> <Button 
                 className="bg-white text-black hover:bg-gray-100 h-12 px-6"
               >
                 Sign up
               </Button>
+              </Link>
             </div>
           </div>
         </div>

@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import Link from "next/link";
 
 export default function NewsSection() {
   return (
@@ -44,9 +45,10 @@ export default function NewsSection() {
             placeholder="your@email.com"
             className="bg-white text-black flex-grow"
           />
-          <Button type="submit" className="bg-[#2A254B] hover:bg-[#2A254B]/90 text-white">
+       <Link href={"/signUp"}> <Button type="submit" className="bg-[#2A254B] hover:bg-[#2A254B]/90 text-white">
             Sign up
           </Button>
+          </Link> 
         </form>
       </div>
     </section>
