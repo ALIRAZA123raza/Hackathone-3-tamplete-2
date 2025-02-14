@@ -37,8 +37,8 @@ export default function Feutures() {
     <Image
       src={product.image}
       alt={product.name}
-      width={500}
-      height={300}
+      width={300}
+      height={200}
       className={`object-cover w-full h-full transition-transform duration-300 group-hover:scale-105 ${
         product.id === 1 ? 'h-[100%] w-[160%]' : ''
       }`} 

@@ -25,7 +25,7 @@ const Hero = () => {
         <Image
           src="/Product Card.png"
           alt="The Dandy Chair"
-          width={500}
+          width={300}
           height={300}
           className="w-full  sm:w-auto h-auto sm:h-full object-contain"
         />
